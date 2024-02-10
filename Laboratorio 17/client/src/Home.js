@@ -8,7 +8,7 @@ function Home() {
   const [message, setMessage] = useState('');
 
   
-  const [clientes, setCliente] = useState([]);  //mostrar tabla afencia
+  const [clientes, setCliente] = useState([]);
   const [personasFeme, setPersonasFeme] = useState([]);
   
 
@@ -16,7 +16,7 @@ function Home() {
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    axios.get('http://localhost:3001/', { withCredentials: true }) // Corregimos la URL para que coincida con el puerto del servidor
+    axios.get('http://localhost:3001/', { withCredentials: true })
     .then(res => {
       if(res.data.Status === "Success"){
         setAuth(true);
@@ -32,7 +32,7 @@ function Home() {
   }, []);
 
   const handleLogout = () => {
-    axios.get('http://localhost:3001/logout', { withCredentials: true }) // Corregimos la URL para que coincida con el puerto del servidor
+    axios.get('http://localhost:3001/logout', { withCredentials: true })
       .then(res => {
         if(res.data.Status === "Success"){
           window.location.reload(true);
@@ -48,11 +48,11 @@ function Home() {
   useEffect(() => {
     axios.get('http://localhost:3001/personas', { withCredentials: true })
       .then(res => {
-        console.log(res.data); // Agrega esta línea para verificar la estructura de los datos recibidos
+        console.log(res.data);
         if (res.data.length > 0) {
           setAuth(true);
           setName(res.data[0].name);
-          setCliente(res.data); // Actualiza el estado de clientes con los datos recibidos
+          setCliente(res.data);
         } else {
           setAuth(false);
           setMessage("No hay usuarios autorizados disponibles.");
